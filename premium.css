@@ -9,3 +9,17 @@ header:focus-within{transform:none;opacity:1;pointer-events:auto}
 .brand{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;flex-shrink:0;border-radius:14px;background:linear-gradient(145deg,#ffffff12,#ffffff03);border:1px solid #ffffff22;color:#e5efff;box-shadow:inset 0 1px 0 #ffffff16}
 .brand-mark{width:32px;height:32px;filter:drop-shadow(0 2px 7px #adcaff30)}
 .brand:focus-visible{outline:2px solid #b8ddff;outline-offset:4px}
+/* Polished liquid-glass navigation. */
+header{isolation:isolate;overflow:hidden;border-radius:28px;background:linear-gradient(112deg,#e7f2ff14 0%,#a5bdfb08 38%,#eef4ff10 72%,#12182826 100%);border:1px solid #e1edff30;backdrop-filter:blur(34px) saturate(180%);-webkit-backdrop-filter:blur(34px) saturate(180%);box-shadow:0 20px 55px #0005,inset 0 1px 1px #ffffff75,inset 0 -1px 1px #a2c1ff25}
+header::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at var(--glass-x,22%) 0%,#d4eaff28,transparent 55%),linear-gradient(100deg,transparent 15%,#ffffff0c 45%,transparent 70%);opacity:.85}
+header::after{content:'';position:absolute;inset:1px;z-index:-1;pointer-events:none;border-radius:27px;border:1px solid transparent;border-top-color:#ffffff22;border-bottom-color:#afc6ff12}
+header nav{gap:7px;padding:5px;border:1px solid #e5efff12;border-radius:99px;background:#080b151e;box-shadow:inset 0 1px 4px #0002}
+header nav a{padding:9px 18px;border-radius:99px;color:#bcc6d8;border:1px solid transparent;transition:background .25s,color .25s,box-shadow .25s}
+header nav a:hover,header nav a:focus-visible{color:#fff;background:linear-gradient(145deg,#ffffff20,#d7e5ff08);border-color:#e6efff25;box-shadow:inset 0 1px 0 #ffffff35,0 3px 12px #0002;outline:none}
+header .brand{position:relative;width:47px;height:47px;border-radius:16px;background:linear-gradient(145deg,#f2f7ff35,#adc9ff0c 48%,#ffffff16);border-color:#e3eeff42;box-shadow:inset 0 1px 1px #ffffffa0,inset 0 -2px 5px #88b6ff16,0 5px 20px #0003;transition:box-shadow .25s,transform .25s}
+header .brand:hover{transform:translateY(-1px);box-shadow:inset 0 1px 1px #fff,0 0 22px #abcaff25}
+header .brand-mark{width:31px;height:31px;color:#f1f7ff;filter:drop-shadow(0 1px 5px #b9d5ff60)}
+header .nav-contact{display:inline-flex;align-items:center;gap:24px;background:linear-gradient(135deg,#f1f6ff18,#c5d8ff08);border-color:#d9e7ff35;box-shadow:inset 0 1px 0 #ffffff35,0 4px 18px #0002;transition:background .25s,box-shadow .25s}
+header .nav-contact:hover{background:linear-gradient(135deg,#f1f6ff2c,#c5d8ff12);box-shadow:inset 0 1px 0 #ffffff65,0 4px 25px #b1caff12}
+@media(max-width:650px){header{padding:0 14px;border-radius:24px}header nav{gap:1px;padding:3px}header nav a{padding:9px 10px;font-size:11px}header .nav-contact{display:none}header .brand{width:40px;height:40px;border-radius:13px}header .brand-mark{width:27px;height:27px}}
+@supports not (backdrop-filter:blur(1px)){header{background:#151923f5}}

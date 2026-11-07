@@ -19,3 +19,4 @@ addEventListener('scroll',()=>{
   });
 },{passive:true});
 siteHeader.addEventListener('focusin',()=>siteHeader.classList.remove('nav-hidden'));
+if(!reduce&&matchMedia('(pointer: fine)').matches){siteHeader.addEventListener('pointermove',e=>{const r=siteHeader.getBoundingClientRect();siteHeader.style.setProperty('--glass-x',((e.clientX-r.left)/r.width*100)+'%')});siteHeader.addEventListener('pointerleave',()=>siteHeader.style.removeProperty('--glass-x'))}
