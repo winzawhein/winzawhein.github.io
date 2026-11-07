@@ -5,3 +5,17 @@ document.querySelectorAll('[data-filter]').forEach(button=>button.onclick=()=>{d
 function progress(){const h=document.documentElement.scrollHeight-innerHeight;document.querySelector('.progress').style.transform=`scaleX(${h>0?scrollY/h:0})`}addEventListener('scroll',progress,{passive:true});addEventListener('resize',progress);progress();document.querySelector('#year').textContent=new Date().getFullYear();
 // Fine-pointer lighting and restrained card tilt; disabled for reduced motion.
 if(!reduce&&matchMedia('(pointer: fine)').matches){let pointerFrame=0;addEventListener('pointermove',e=>{if(pointerFrame)return;pointerFrame=requestAnimationFrame(()=>{document.body.style.setProperty('--pointer-x',e.clientX+'px');document.body.style.setProperty('--pointer-y',e.clientY+'px');pointerFrame=0})},{passive:true});document.querySelectorAll('.project').forEach(card=>{card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect();const x=e.clientX-r.left,y=e.clientY-r.top;card.style.setProperty('--card-x',x+'px');card.style.setProperty('--card-y',y+'px');card.style.setProperty('--tilt-x',((.5-y/r.height)*3)+'deg');card.style.setProperty('--tilt-y',((x/r.width-.5)*3)+'deg')});card.addEventListener('pointerleave',()=>{card.style.setProperty('--tilt-x','0deg');card.style.setProperty('--tilt-y','0deg')})})}
+
+// Hide on downward scroll; reveal on upward scroll, near the top, or keyboard focus.
+const siteHeader=document.querySelector('header');
+let navAnchor=Math.max(0,scrollY),navFrame=0;
+addEventListener('scroll',()=>{
+  if(navFrame)return;
+  navFrame=requestAnimationFrame(()=>{
+    const y=Math.max(0,scrollY),delta=y-navAnchor;
+    if(y<90){siteHeader.classList.remove('nav-hidden');navAnchor=y;}
+    else if(Math.abs(delta)>8){siteHeader.classList.toggle('nav-hidden',delta>0);navAnchor=y;}
+    navFrame=0;
+  });
+},{passive:true});
+siteHeader.addEventListener('focusin',()=>siteHeader.classList.remove('nav-hidden'));
